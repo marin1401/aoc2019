@@ -39,9 +39,10 @@ def wireprog(wirepath):
                 pathstep.append([step,[x,y]])
     return path[1:],pathstep[1:]
 
-#Part 1
 wirelist1 = wireprog(wirepath1)
 wirelist2 = wireprog(wirepath2)
+
+#Part 1
 intersections_set = set(map(tuple, wirelist1[0])) & \
                     set(map(tuple, wirelist2[0]))
 intersections = list(map(list, intersections_set))
