@@ -1,4 +1,4 @@
-#Day 2
+#Day 5
 
 with open('./05.txt') as myinput:
     inputlines = myinput.read().split(',')
