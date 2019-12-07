@@ -31,9 +31,6 @@ def program(original_input, inputval):
             elif str(a[i+j])[-1] == '2':
                 a[a[3+i+j]] = a[1+i+j]*a[a[2+i+j]]
                 j += 3
-            elif str(a[i+j])[-1] == '3':
-                a[a[1+i+j]] = inputval
-                j += 1
             elif str(a[i+j])[-1] == '4':
                 out.append(a[a[1+i+j]])
                 j += 1
@@ -54,12 +51,6 @@ def program(original_input, inputval):
                     else:
                         a[a[3+i+j]] = a[a[1+i+j]]*a[2+i+j]
                     j += 3 
-            elif str(a[i+j])[-1] == '3':
-                a[a[1+i+j]] = inputval
-                j += 1
-            elif str(a[i+j])[-1] == '4':
-                out.append(a[a[1+i+j]])
-                j += 1
             else:
                 break
         else:
@@ -67,8 +58,6 @@ def program(original_input, inputval):
     return out
 
 #Part 1
-inputval = 1
-print(program(inputlines, inputval)[-1])
+print(program(inputlines, 1)[-1])
 
 #Part 2
-inputval = 5
