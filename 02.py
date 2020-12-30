@@ -3,30 +3,31 @@
 with open('./02.txt') as myinput:
     inputlines = myinput.read().split(',')
 
-inputlines = [int(line) for line in inputlines]
+intcode_program = [int(line) for line in inputlines]
 
-def Intcode(original_input, x, y):
-    a = original_input.copy()
-    a[1] = x
-    a[2] = y
-    for i in range(0, len(a), 4):
-        if a[i] == 1:
-            a[a[3+i]] = a[a[1+i]] + a[a[2+i]]
-        elif a[i] == 2:
-            a[a[3+i]] = a[a[1+i]] * a[a[2+i]]
-    return a[0]
+def computer(intcode_program, noun, verb):
+    ip = intcode_program.copy()
+    ip[1] = noun
+    ip[2] = verb
+    for i in range(0, len(ip), 4):
+        if ip[i] == 1:
+            ip[ip[3+i]] = ip[ip[1+i]] + ip[ip[2+i]]
+        elif ip[i] == 2:
+            ip[ip[3+i]] = ip[ip[1+i]] * ip[ip[2+i]]
+        elif ip[i] == 99:
+            return ip[0]
 
 #Part 1
 
-print(Intcode(inputlines, 12, 2))
+print(computer(intcode_program, 12, 2))
 
 #Part 2
 
-def get_output(output, inputlines):
+def get_output(intcode_program, output):
     for noun in range(100):
         for verb in range(100):
-            result = Intcode(inputlines, noun, verb)
+            result = computer(intcode_program, noun, verb)
             if result == output:
                 return 100 * noun + verb
 
-print(get_output(19690720, inputlines))
+print(get_output(intcode_program, 19690720))
