@@ -7,7 +7,7 @@ lower_limit, upper_limit = map(int, limits.split('-'))
 
 candidates_1 = set()
 candidates_2 = set()
-for i in range(lower_limit, upper_limit):
+for i in range(lower_limit, upper_limit + 1):
     n = str(i)
     if n[0] <= n[1] <= n[2] <= n[3] <= n[4] <= n[5]:
         for current_digit, next_digit in zip(n, n[1:]):
