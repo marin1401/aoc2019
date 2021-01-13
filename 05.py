@@ -29,38 +29,26 @@ def computer(intcode_program, input_value):
                 else:
                     sp = ip[ip[2+i]]
         if op == '01':
-            overwrite_ip(ip, opcode, 3+i, -5, fp + sp)
+            overwrite_ip(ip, opcode, i+3, -5, fp + sp)
             i += 4
         elif op == '02':
-            overwrite_ip(ip, opcode, 3+i, -5, fp * sp)
+            overwrite_ip(ip, opcode, i+3, -5, fp * sp)
             i += 4
         elif op == '03':
-            overwrite_ip(ip, opcode, 1+i, -3, input_value)
+            overwrite_ip(ip, opcode, i+1, -3, input_value)
             i += 2
         elif op == '04':
             out.append(fp)
             i += 2
         elif op == '05':
-            if fp != 0:
-                i = sp
-            else:
-                i += 3
+            i = sp if fp else i+3
         elif op == '06':
-            if fp == 0:
-                i = sp
-            else:
-                i += 3
+            i = sp if not fp else i+3
         elif op == '07':
-            if fp < sp:
-                overwrite_ip(ip, opcode, 3+i, -5, 1)
-            else:
-                overwrite_ip(ip, opcode, 3+i, -5, 0)
+            overwrite_ip(ip, opcode, i+3, -5, 1 if fp < sp else 0)
             i += 4
         elif op == '08':
-            if fp == sp:
-                overwrite_ip(ip, opcode, 3+i, -5, 1)
-            else:
-                overwrite_ip(ip, opcode, 3+i, -5, 0)
+            overwrite_ip(ip, opcode, i+3, -5, 1 if fp == sp else 0)
             i += 4
     return out[-1]
 
